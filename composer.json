@@ -1,0 +1,60 @@
+{
+    "name": "sebastiaanluca/laravel-auto-morph-map",
+    "type": "library",
+    "description": "Automatically alias and map the polymorphic types of Eloquent models.",
+    "keywords": [
+        "php",
+        "laravel",
+        "model",
+        "eloquent",
+        "class",
+        "morph",
+        "map"
+    ],
+    "homepage": "https://github.com/sebastiaanluca/laravel-auto-morph-map",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastiaan Luca",
+            "email": "hello@sebastiaanluca.com",
+            "homepage": "https://www.sebastiaanluca.com",
+            "role": "Author"
+        }
+    ],
+    "require": {
+        "laravel/framework": "^5.6",
+        "php": "^7.2"
+    },
+    "require-dev": {
+        "kint-php/kint": "^2.2",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "^3.6",
+        "phpunit/phpunit": "^7.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "SebastiaanLuca\\AutoMorphMap\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SebastiaanLuca\\AutoMorphMap\\Tests\\": "tests",
+            "App\\": "tests/resources/app/",
+            "MyModule\\": "tests/resources/modules/MyModule/",
+            "MyPackage\\": "tests/resources/MyPackage/src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SebastiaanLuca\\AutoMorphMap\\AutoMorphMapServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}
