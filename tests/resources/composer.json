@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "MyModule\\": "modules/MyModule/",
+            "MyPackage\\": "MyPackage/src/"
+        }
+    }
+}
