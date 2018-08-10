@@ -6,6 +6,10 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
+### Changed
+
+- Moved `CaseTypes` to a sub namespace
+
 ## 1.0.0 (2018-08-07)
 
 ### Added

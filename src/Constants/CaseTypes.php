@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SebastiaanLuca\AutoMorphMap;
+namespace SebastiaanLuca\AutoMorphMap\Constants;
 
 class CaseTypes
 {

@@ -1,6 +1,6 @@
 <?php
 
-use SebastiaanLuca\AutoMorphMap\CaseTypes;
+use SebastiaanLuca\AutoMorphMap\Constants\CaseTypes;
 
 return [
 

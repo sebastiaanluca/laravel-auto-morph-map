@@ -7,6 +7,7 @@ namespace SebastiaanLuca\AutoMorphMap;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use ReflectionClass;
+use SebastiaanLuca\AutoMorphMap\Constants\CaseTypes;
 use Symfony\Component\Finder\Finder;
 
 class Mapper

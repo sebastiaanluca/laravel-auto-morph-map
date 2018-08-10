@@ -128,7 +128,7 @@ to publish the configuration file.
 
 By default, the case type for aliasing models is set to *snake case*. You can change this to use camel, snake, or studly casing.
 
-See `\SebastiaanLuca\AutoMorphMap\CaseTypes` for possible options.
+See `\SebastiaanLuca\AutoMorphMap\Constants\CaseTypes` for possible options.
 
 Snake case (default):
 

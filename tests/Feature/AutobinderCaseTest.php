@@ -6,7 +6,7 @@ namespace SebastiaanLuca\AutoMorphMap\Tests\Feature;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Mockery\MockInterface;
-use SebastiaanLuca\AutoMorphMap\CaseTypes;
+use SebastiaanLuca\AutoMorphMap\Constants\CaseTypes;
 use SebastiaanLuca\AutoMorphMap\Mapper;
 use SebastiaanLuca\AutoMorphMap\Tests\MocksInstances;
 use SebastiaanLuca\AutoMorphMap\Tests\TestCase;
