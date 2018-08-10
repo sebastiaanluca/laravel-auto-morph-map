@@ -163,6 +163,12 @@ class Mapper
      */
     protected function getModelAlias(string $model) : string
     {
+        $callback = config('auto-morph-map.conversion');
+
+        if ($callback && is_callable($callback)) {
+            return $callback($model);
+        }
+
         $name = $this->getModelName($model);
 
         switch (config('auto-morph-map.case')) {
