@@ -10,10 +10,12 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 - Added naming scheme options
 - Added conversion override option
+- Added "none" case type
 
 ### Changed
 
 - Moved `CaseTypes` to a sub namespace
+- Case type is now "none" by default
 
 ## 1.0.0 (2018-08-07)
 

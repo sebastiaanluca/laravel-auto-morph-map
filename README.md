@@ -16,7 +16,7 @@
 
 See [Custom Polymorphic Types](https://laravel.com/docs/5.6/eloquent-relationships#polymorphic-relations) in the Laravel documentation for more information.
 
-*Laravel auto morph map* improves upon that by scanning all your Eloquent models, automatically aliasing their base class names to uniform strings, and registering them as a polymorphic type. No more need for dozens of manual `Relation::morphMap()` calls to register model morph types!
+*Laravel auto morph map* improves upon that by scanning all your Eloquent models, automatically aliasing them as *uniform singular table names*, and registering them as a polymorphic type. No more need for dozens of manual `Relation::morphMap()` calls to register model morph types!
 
 ## Table of contents
 
@@ -27,6 +27,7 @@ See [Custom Polymorphic Types](https://laravel.com/docs/5.6/eloquent-relationshi
     - [Overriding existing aliases](#overriding-existing-aliases)
     - [Caching morph types in production](#caching-morph-types-in-production)
     - [Configuration](#configuration)
+        - [Naming](#naming)
         - [Casing](#casing)
 - [License](#license)
 - [Change log](#change-log)
@@ -100,7 +101,7 @@ php artisan morphmap:cache
 
 This scans all your current models and writes a static cache file to the `bootstrap/cache` directory. Upon subsequent framework booting, it reads the cache file instead of scanning and aliasing on-the-fly.
 
-Note that this thus **disables runtime scanning**, meaning new models will not be recognized and changes to existing models will not be reflected (not very handy during development). You can however still change the case type in the configuration file, as the binding happens in a later stage.
+Note that this thus **disables runtime scanning**, meaning new models will not be recognized and changes to existing models will not be reflected (not very handy during development).
 
 To clear the cache file, run:
 

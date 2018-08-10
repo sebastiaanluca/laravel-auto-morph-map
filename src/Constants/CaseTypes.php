@@ -9,6 +9,11 @@ class CaseTypes
     /**
      * @var string
      */
+    public const NONE = 'none';
+
+    /**
+     * @var string
+     */
     public const CAMEL_CASE = 'camelCase';
 
     /**

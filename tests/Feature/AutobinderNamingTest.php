@@ -28,11 +28,11 @@ class AutobinderNamingTest extends TestCase
             'user' => 'App\\User',
             'something_inherited' => 'App\Models\\SomethingInherited',
             'address' => 'MyModule\\Models\\Address',
-            'thing' => 'MyPackage\\Models\\Thing',
+            'SomeThing' => 'MyPackage\\Models\\Thing',
             'different_package' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
-        $relation->shouldReceive('morphMap')->once();
+        $relation->shouldReceive('morphMap')->once()->withNoArgs();
         $relation->shouldReceive('morphMap')->once()->with($expected);
 
         app(Mapper::class)->map();
@@ -51,11 +51,11 @@ class AutobinderNamingTest extends TestCase
             'user' => 'App\\User',
             'something_inherited' => 'App\Models\\SomethingInherited',
             'address' => 'MyModule\\Models\\Address',
-            'thing' => 'MyPackage\\Models\\Thing',
+            'SomeThing' => 'MyPackage\\Models\\Thing',
             'different_package' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
-        $relation->shouldReceive('morphMap')->once();
+        $relation->shouldReceive('morphMap')->once()->withNoArgs();
         $relation->shouldReceive('morphMap')->once()->with($expected);
 
         app(Mapper::class)->map();
@@ -74,11 +74,11 @@ class AutobinderNamingTest extends TestCase
             'users' => 'App\\User',
             'something_inheriteds' => 'App\Models\\SomethingInherited',
             'addresses' => 'MyModule\\Models\\Address',
-            'things' => 'MyPackage\\Models\\Thing',
+            'SomeThings' => 'MyPackage\\Models\\Thing',
             'different_packages' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
-        $relation->shouldReceive('morphMap')->once();
+        $relation->shouldReceive('morphMap')->once()->withNoArgs();
         $relation->shouldReceive('morphMap')->once()->with($expected);
 
         app(Mapper::class)->map();
@@ -94,14 +94,14 @@ class AutobinderNamingTest extends TestCase
         config()->set('auto-morph-map.naming', NamingSchemes::CLASS_BASENAME);
 
         $expected = [
-            'user' => 'App\\User',
-            'something_inherited' => 'App\Models\\SomethingInherited',
-            'address' => 'MyModule\\Models\\Address',
-            'thing' => 'MyPackage\\Models\\Thing',
-            'package' => 'MyPackage\\Models\\Sub\\Package',
+            'User' => 'App\\User',
+            'SomethingInherited' => 'App\Models\\SomethingInherited',
+            'Address' => 'MyModule\\Models\\Address',
+            'Thing' => 'MyPackage\\Models\\Thing',
+            'Package' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
-        $relation->shouldReceive('morphMap')->once();
+        $relation->shouldReceive('morphMap')->once()->withNoArgs();
         $relation->shouldReceive('morphMap')->once()->with($expected);
 
         app(Mapper::class)->map();

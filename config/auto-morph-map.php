@@ -12,9 +12,9 @@ return [
     'naming' => NamingSchemes::SINGULAR_TABLE_NAME,
 
     /**
-     * The case type to use when aliasing a model. Defaults to snake case.
+     * The case type to use when aliasing a model. Defaults to use no conversion.
      */
-    'case' => CaseTypes::SNAKE_CASE,
+    'case' => CaseTypes::NONE,
 
     /**
      * If you wish, you can override the naming and conversion altogether

@@ -166,15 +166,18 @@ class Mapper
         $name = $this->getModelName($model);
 
         switch (config('auto-morph-map.case')) {
+            case CaseTypes::SNAKE_CASE:
+                return snake_case($name);
+
             case CaseTypes::CAMEL_CASE:
                 return camel_case($name);
 
             case CaseTypes::STUDLY_CASE:
                 return studly_case($name);
 
-            case CaseTypes::SNAKE_CASE:
+            case CaseTypes::NONE:
             default:
-                return snake_case($name);
+                return $name;
         }
     }
 

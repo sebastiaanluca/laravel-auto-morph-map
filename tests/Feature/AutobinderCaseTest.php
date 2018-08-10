@@ -28,11 +28,11 @@ class AutobinderCaseTest extends TestCase
             'user' => 'App\\User',
             'something_inherited' => 'App\Models\\SomethingInherited',
             'address' => 'MyModule\\Models\\Address',
-            'thing' => 'MyPackage\\Models\\Thing',
+            'SomeThing' => 'MyPackage\\Models\\Thing',
             'different_package' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
-        $relation->shouldReceive('morphMap')->once();
+        $relation->shouldReceive('morphMap')->once()->withNoArgs();
         $relation->shouldReceive('morphMap')->once()->with($expected);
 
         app(Mapper::class)->map();
@@ -51,11 +51,11 @@ class AutobinderCaseTest extends TestCase
             'user' => 'App\\User',
             'something_inherited' => 'App\\Models\\SomethingInherited',
             'address' => 'MyModule\\Models\\Address',
-            'thing' => 'MyPackage\\Models\\Thing',
+            'some_thing' => 'MyPackage\\Models\\Thing',
             'different_package' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
-        $relation->shouldReceive('morphMap')->once();
+        $relation->shouldReceive('morphMap')->once()->withNoArgs();
         $relation->shouldReceive('morphMap')->once()->with($expected);
 
         app(Mapper::class)->map();
@@ -74,11 +74,11 @@ class AutobinderCaseTest extends TestCase
             'user' => 'App\\User',
             'somethingInherited' => 'App\\Models\\SomethingInherited',
             'address' => 'MyModule\\Models\\Address',
-            'thing' => 'MyPackage\\Models\\Thing',
+            'someThing' => 'MyPackage\\Models\\Thing',
             'differentPackage' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
-        $relation->shouldReceive('morphMap')->once();
+        $relation->shouldReceive('morphMap')->once()->withNoArgs();
         $relation->shouldReceive('morphMap')->once()->with($expected);
 
         app(Mapper::class)->map();
@@ -97,11 +97,11 @@ class AutobinderCaseTest extends TestCase
             'User' => 'App\\User',
             'SomethingInherited' => 'App\\Models\\SomethingInherited',
             'Address' => 'MyModule\\Models\\Address',
-            'Thing' => 'MyPackage\\Models\\Thing',
+            'SomeThing' => 'MyPackage\\Models\\Thing',
             'DifferentPackage' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
-        $relation->shouldReceive('morphMap')->once();
+        $relation->shouldReceive('morphMap')->once()->withNoArgs();
         $relation->shouldReceive('morphMap')->once()->with($expected);
 
         app(Mapper::class)->map();
