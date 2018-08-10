@@ -125,17 +125,63 @@ laravel-auto-morph-map (configuration)
 
 to publish the configuration file.
 
-#### Casing
+#### Naming
 
-By default, the case type for aliasing models is set to *snake case*. You can change this to use camel, snake, or studly casing.
+The naming scheme to use when determining the model's morph type base value. Defaults to the singular table name (automatically determined by Laravel or overridden in the model using the `$table` variable).
 
-See `\SebastiaanLuca\AutoMorphMap\Constants\CaseTypes` for possible options.
+You can change this to use the singular table name, table name, or class basename. See `\SebastiaanLuca\AutoMorphMap\Constants\NamingSchemes` for possible options.
 
-Snake case (default):
+Singular table name (default):
 
 ```php
 Relation::morphMap([
-    'collection_items' => 'App\CollectionItems',
+    'collection_item' => 'App\CollectionItem',
+]);
+```
+
+Table name:
+
+```php
+Relation::morphMap([
+    'collection_items' => 'App\CollectionItem',
+]);
+```
+
+Class basename:
+
+```php
+Relation::morphMap([
+    'collection_item' => 'App\CollectionItem',
+]);
+```
+
+#### Casing
+
+Converts your model name (after having passed the naming scheme conversion) to a more uniform string. By default, the casing of a model's alias is not converted. The reason for this is that the default naming scheme is already snake cased and rather ideal for its purpose.
+
+You can change this to use snake, slug, camel, studly or no casing. See `\SebastiaanLuca\AutoMorphMap\Constants\CaseTypes` for possible options.
+
+None (default):
+
+```php
+Relation::morphMap([
+    'collection_item' => 'App\CollectionItem',
+]);
+```
+
+Snake case:
+
+```php
+Relation::morphMap([
+    'collection_item' => 'App\CollectionItem',
+]);
+```
+
+Slug case:
+
+```php
+Relation::morphMap([
+    'collection-item' => 'App\CollectionItem',
 ]);
 ```
 
@@ -143,7 +189,7 @@ Camel case:
 
 ```php
 Relation::morphMap([
-    'collectionItems' => 'App\CollectionItems',
+    'collectionItem' => 'App\CollectionItem',
 ]);
 ```
 
@@ -151,11 +197,9 @@ Studly case:
 
 ```php
 Relation::morphMap([
-    'CollectionItems' => 'App\CollectionItems',
+    'CollectionItem' => 'App\CollectionItem',
 ]);
 ```
-
-The case type can still be changed after caching your models.
 
 ## License
 
