@@ -26,7 +26,17 @@ class Mapper
 
         $models = $this->getModels();
 
-        $this->mapModels($models);
+        $map = $this->getModelMap($models);
+
+        $this->mapModels($map);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCachePath() : string
+    {
+        return base_path('bootstrap/cache/morphmap.php');
     }
 
     /**
@@ -46,11 +56,19 @@ class Mapper
     }
 
     /**
-     * @return string
+     * @param array $models
+     *
+     * @return array
      */
-    public function getCachePath() : string
+    public function getModelMap(array $models) : array
     {
-        return base_path('bootstrap/cache/morphmap.php');
+        $map = [];
+
+        foreach ($models as $model) {
+            array_set($map, $this->getModelAlias($model), $model);
+        }
+
+        return $map;
     }
 
     /**
@@ -133,17 +151,11 @@ class Mapper
     }
 
     /**
-     * @param array $models
+     * @param array $map
      */
-    protected function mapModels(array $models) : void
+    protected function mapModels(array $map) : void
     {
         $existing = Relation::morphMap() ?: [];
-
-        $map = [];
-
-        foreach ($models as $model) {
-            array_set($map, $this->getModelAlias($model), $model);
-        }
 
         if (! empty($existing)) {
             $map = collect($map)

@@ -16,6 +16,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Changed
 
 - Moved `CaseTypes` to a sub namespace
+- Cache command now writes an aliased list of models, in effect disabling changing the case type afterwards
 - Case type is now "none" by default
 
 ## 1.0.0 (2018-08-07)
