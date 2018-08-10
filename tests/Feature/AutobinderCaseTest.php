@@ -64,6 +64,29 @@ class AutobinderCaseTest extends TestCase
     /**
      * @test
      */
+    public function it maps all models using slug case() : void
+    {
+        $relation = $this->getMockedRelation();
+
+        config()->set('auto-morph-map.case', CaseTypes::SLUG_CASE);
+
+        $expected = [
+            'user' => 'App\\User',
+            'something-inherited' => 'App\\Models\\SomethingInherited',
+            'address' => 'MyModule\\Models\\Address',
+            'something' => 'MyPackage\\Models\\Thing',
+            'different-package' => 'MyPackage\\Models\\Sub\\Package',
+        ];
+
+        $relation->shouldReceive('morphMap')->once()->withNoArgs();
+        $relation->shouldReceive('morphMap')->once()->with($expected);
+
+        app(Mapper::class)->map();
+    }
+
+    /**
+     * @test
+     */
     public function it maps all models using camel case() : void
     {
         $relation = $this->getMockedRelation();

@@ -169,6 +169,9 @@ class Mapper
             case CaseTypes::SNAKE_CASE:
                 return snake_case($name);
 
+            case CaseTypes::SLUG_CASE:
+                return str_slug($name);
+
             case CaseTypes::CAMEL_CASE:
                 return camel_case($name);
 

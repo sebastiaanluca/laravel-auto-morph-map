@@ -11,6 +11,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Added naming scheme options
 - Added conversion override option
 - Added "none" case type
+- Added slug case type
 
 ### Changed
 

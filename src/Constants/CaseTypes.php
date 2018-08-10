@@ -14,12 +14,17 @@ class CaseTypes
     /**
      * @var string
      */
-    public const CAMEL_CASE = 'camelCase';
+    public const SNAKE_CASE = 'snake_case';
 
     /**
      * @var string
      */
-    public const SNAKE_CASE = 'snake_case';
+    public const SLUG_CASE = 'slug-case';
+
+    /**
+     * @var string
+     */
+    public const CAMEL_CASE = 'camelCase';
 
     /**
      * @var string
