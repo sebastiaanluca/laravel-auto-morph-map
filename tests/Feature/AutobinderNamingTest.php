@@ -6,23 +6,23 @@ namespace SebastiaanLuca\AutoMorphMap\Tests\Feature;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Mockery\MockInterface;
-use SebastiaanLuca\AutoMorphMap\Constants\CaseTypes;
+use SebastiaanLuca\AutoMorphMap\Constants\NamingSchemes;
 use SebastiaanLuca\AutoMorphMap\Mapper;
 use SebastiaanLuca\AutoMorphMap\Tests\MocksInstances;
 use SebastiaanLuca\AutoMorphMap\Tests\TestCase;
 
-class AutobinderCaseTest extends TestCase
+class AutobinderNamingTest extends TestCase
 {
     use MocksInstances;
 
     /**
      * @test
      */
-    public function it maps all models using the default case() : void
+    public function it maps all models using the default naming scheme() : void
     {
         $relation = $this->getMockedRelation();
 
-        config()->set('auto-morph-map.case', null);
+        config()->set('auto-morph-map.naming', null);
 
         $expected = [
             'user' => 'App\\User',
@@ -41,15 +41,15 @@ class AutobinderCaseTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using snake case() : void
+    public function it maps all models using the singular table name naming scheme() : void
     {
         $relation = $this->getMockedRelation();
 
-        config()->set('auto-morph-map.case', CaseTypes::SNAKE_CASE);
+        config()->set('auto-morph-map.naming', NamingSchemes::SINGULAR_TABLE_NAME);
 
         $expected = [
             'user' => 'App\\User',
-            'something_inherited' => 'App\\Models\\SomethingInherited',
+            'something_inherited' => 'App\Models\\SomethingInherited',
             'address' => 'MyModule\\Models\\Address',
             'thing' => 'MyPackage\\Models\\Thing',
             'different_package' => 'MyPackage\\Models\\Sub\\Package',
@@ -64,18 +64,18 @@ class AutobinderCaseTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using camel case() : void
+    public function it maps all models using the table name naming scheme() : void
     {
         $relation = $this->getMockedRelation();
 
-        config()->set('auto-morph-map.case', CaseTypes::CAMEL_CASE);
+        config()->set('auto-morph-map.naming', NamingSchemes::TABLE_NAME);
 
         $expected = [
-            'user' => 'App\\User',
-            'somethingInherited' => 'App\\Models\\SomethingInherited',
-            'address' => 'MyModule\\Models\\Address',
-            'thing' => 'MyPackage\\Models\\Thing',
-            'differentPackage' => 'MyPackage\\Models\\Sub\\Package',
+            'users' => 'App\\User',
+            'something_inheriteds' => 'App\Models\\SomethingInherited',
+            'addresses' => 'MyModule\\Models\\Address',
+            'things' => 'MyPackage\\Models\\Thing',
+            'different_packages' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
         $relation->shouldReceive('morphMap')->once();
@@ -87,18 +87,18 @@ class AutobinderCaseTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using studly case() : void
+    public function it maps all models using the class basename naming scheme() : void
     {
         $relation = $this->getMockedRelation();
 
-        config()->set('auto-morph-map.case', CaseTypes::STUDLY_CASE);
+        config()->set('auto-morph-map.naming', NamingSchemes::CLASS_BASENAME);
 
         $expected = [
-            'User' => 'App\\User',
-            'SomethingInherited' => 'App\\Models\\SomethingInherited',
-            'Address' => 'MyModule\\Models\\Address',
-            'Thing' => 'MyPackage\\Models\\Thing',
-            'DifferentPackage' => 'MyPackage\\Models\\Sub\\Package',
+            'user' => 'App\\User',
+            'something_inherited' => 'App\Models\\SomethingInherited',
+            'address' => 'MyModule\\Models\\Address',
+            'thing' => 'MyPackage\\Models\\Thing',
+            'package' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
         $relation->shouldReceive('morphMap')->once();

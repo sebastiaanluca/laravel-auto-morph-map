@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use ReflectionClass;
 use SebastiaanLuca\AutoMorphMap\Constants\CaseTypes;
+use SebastiaanLuca\AutoMorphMap\Constants\NamingSchemes;
 use Symfony\Component\Finder\Finder;
 
 class Mapper
@@ -34,6 +35,7 @@ class Mapper
     public function getModels() : array
     {
         $config = $this->getComposerConfig();
+
         $paths = $this->getModelPaths($config);
 
         if (empty($paths)) {
@@ -135,7 +137,7 @@ class Mapper
      */
     protected function mapModels(array $models) : void
     {
-        $existing = Relation::morphMap();
+        $existing = Relation::morphMap() ?: [];
 
         $map = [];
 
@@ -161,18 +163,40 @@ class Mapper
      */
     protected function getModelAlias(string $model) : string
     {
-        $basename = class_basename($model);
+        $name = $this->getModelName($model);
 
         switch (config('auto-morph-map.case')) {
             case CaseTypes::CAMEL_CASE:
-                return camel_case($basename);
+                return camel_case($name);
 
             case CaseTypes::STUDLY_CASE:
-                return studly_case($basename);
+                return studly_case($name);
 
             case CaseTypes::SNAKE_CASE:
             default:
-                return snake_case($basename);
+                return snake_case($name);
+        }
+    }
+
+    /**
+     * @param string $model
+     *
+     * @return string
+     */
+    private function getModelName(string $model) : string
+    {
+        switch (config('auto-morph-map.naming')) {
+            case NamingSchemes::TABLE_NAME:
+                return app($model)->getTable();
+
+            case NamingSchemes::CLASS_BASENAME:
+                return class_basename($model);
+
+            case NamingSchemes::SINGULAR_TABLE_NAME:
+            default:
+                return str_singular(
+                    app($model)->getTable()
+                );
         }
     }
 }

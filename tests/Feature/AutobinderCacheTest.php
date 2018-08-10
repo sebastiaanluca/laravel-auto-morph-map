@@ -26,7 +26,7 @@ class AutobinderCacheTest extends TestCase
             'something_inherited' => 'App\\Models\\SomethingInherited',
             'address' => 'MyModule\\Models\\Address',
             'thing' => 'MyPackage\\Models\\Thing',
-            'package' => 'MyPackage\\Models\\Sub\\Package',
+            'different_package' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
         $relation->shouldReceive('morphMap')->once();
@@ -43,7 +43,7 @@ class AutobinderCacheTest extends TestCase
         $cache = base_path('bootstrap/cache/morphmap.php');
 
         $copy = copy(
-            base_path('cache.php'),
+            __DIR__ . '/../resources/cache.php',
             $cache
         );
 
@@ -52,8 +52,8 @@ class AutobinderCacheTest extends TestCase
         $relation = $this->getMockedRelation();
 
         $expected = [
-            'something_cached' => 'App\\SomethingCached',
-            'cached_user' => 'App\\Models\\CachedUser',
+            'something_inherited' => 'App\\Models\\SomethingInherited',
+            'different_package' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
         $relation->shouldReceive('morphMap')->once();

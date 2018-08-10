@@ -26,7 +26,7 @@ class MapperTest extends TestCase
             'something_inherited' => 'App\\Models\\SomethingInherited',
             'address' => 'MyModule\\Models\\Address',
             'thing' => 'MyPackage\\Models\\Thing',
-            'package' => 'MyPackage\\Models\\Sub\\Package',
+            'different_package' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
         $relation->shouldReceive('morphMap')->once();
@@ -50,7 +50,7 @@ class MapperTest extends TestCase
         $expected = [
             'user' => 'App\\User',
             'address' => 'MyModule\\Models\\Address',
-            'package' => 'MyPackage\\Models\\Sub\\Package',
+            'different_package' => 'MyPackage\\Models\\Sub\\Package',
         ];
 
         $relation->shouldReceive('morphMap')->once()->andReturn($existing);

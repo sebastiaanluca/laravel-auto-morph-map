@@ -6,6 +6,11 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
+### Added
+
+- Added naming scheme options
+- Added conversion override option
+
 ### Changed
 
 - Moved `CaseTypes` to a sub namespace
