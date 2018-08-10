@@ -151,25 +151,17 @@ Class basename:
 
 ```php
 Relation::morphMap([
-    'collection_item' => 'App\CollectionItem',
+    'CollectionItem' => 'App\CollectionItem',
 ]);
 ```
 
 #### Casing
 
-Converts your model name (after having passed the naming scheme conversion) to a more uniform string. By default, the casing of a model's alias is not converted. The reason for this is that the default naming scheme is already snake cased and rather ideal for its purpose.
+Converts your model name (after having passed the naming scheme conversion) to a more uniform string. By default, the model's name (based on your naming scheme) is converted to *snake case*.
 
 You can change this to use snake, slug, camel, studly or no casing. See `\SebastiaanLuca\AutoMorphMap\Constants\CaseTypes` for possible options.
 
-None (default):
-
-```php
-Relation::morphMap([
-    'collection_item' => 'App\CollectionItem',
-]);
-```
-
-Snake case:
+Snake case (default):
 
 ```php
 Relation::morphMap([
@@ -198,6 +190,14 @@ Studly case:
 ```php
 Relation::morphMap([
     'CollectionItem' => 'App\CollectionItem',
+]);
+```
+
+None (determined by your naming scheme and Laravel's class-to-table conversion method):
+
+```php
+Relation::morphMap([
+    'collection_item' => 'App\CollectionItem',
 ]);
 ```
 
