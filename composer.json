@@ -39,9 +39,9 @@
     "autoload-dev": {
         "psr-4": {
             "SebastiaanLuca\\AutoMorphMap\\Tests\\": "tests",
-            "App\\": "tests/resources/app/",
-            "MyModule\\": "tests/resources/modules/MyModule/",
-            "MyPackage\\": "tests/resources/MyPackage/src/"
+            "App\\": "tests/temp/app/",
+            "MyModule\\": "tests/temp/modules/MyModule/",
+            "MyPackage\\": "tests/temp/MyPackage/src/"
         }
     },
     "config": {
