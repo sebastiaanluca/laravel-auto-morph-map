@@ -1,4 +1,4 @@
 <?php return array (
-  0 => 'App\\SomethingCached',
-  1 => 'App\\Models\\CachedUser',
+  "something_inherited" => 'App\\Models\\SomethingInherited',
+  "different_package" => 'MyPackage\\Models\\Sub\\Package',
 );

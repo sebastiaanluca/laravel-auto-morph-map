@@ -16,7 +16,7 @@
 
 See [Custom Polymorphic Types](https://laravel.com/docs/5.6/eloquent-relationships#polymorphic-relations) in the Laravel documentation for more information.
 
-*Laravel auto morph map* improves upon that by scanning all your Eloquent models, automatically aliasing their base class names to uniform strings, and registering them as a polymorphic type. No more need for dozens of manual `Relation::morphMap()` calls to register model morph types!
+*Laravel auto morph map* improves upon that by scanning all your Eloquent models, automatically aliasing them as *uniform singular table names*, and registering them as a polymorphic type. No more need for dozens of manual `Relation::morphMap()` calls to register model morph types!
 
 ## Table of contents
 
@@ -27,6 +27,7 @@ See [Custom Polymorphic Types](https://laravel.com/docs/5.6/eloquent-relationshi
     - [Overriding existing aliases](#overriding-existing-aliases)
     - [Caching morph types in production](#caching-morph-types-in-production)
     - [Configuration](#configuration)
+        - [Naming](#naming)
         - [Casing](#casing)
 - [License](#license)
 - [Change log](#change-log)
@@ -100,7 +101,7 @@ php artisan morphmap:cache
 
 This scans all your current models and writes a static cache file to the `bootstrap/cache` directory. Upon subsequent framework booting, it reads the cache file instead of scanning and aliasing on-the-fly.
 
-Note that this thus **disables runtime scanning**, meaning new models will not be recognized and changes to existing models will not be reflected (not very handy during development). You can however still change the case type in the configuration file, as the binding happens in a later stage.
+Note that this thus **disables runtime scanning**, meaning new models will not be recognized and changes to existing models will not be reflected (not very handy during development).
 
 To clear the cache file, run:
 
@@ -124,17 +125,55 @@ laravel-auto-morph-map (configuration)
 
 to publish the configuration file.
 
+#### Naming
+
+The naming scheme to use when determining the model's morph type base value. Defaults to the singular table name (automatically determined by Laravel or overridden in the model using the `$table` variable).
+
+You can change this to use the singular table name, table name, or class basename. See `\SebastiaanLuca\AutoMorphMap\Constants\NamingSchemes` for possible options.
+
+Singular table name (default):
+
+```php
+Relation::morphMap([
+    'collection_item' => 'App\CollectionItem',
+]);
+```
+
+Table name:
+
+```php
+Relation::morphMap([
+    'collection_items' => 'App\CollectionItem',
+]);
+```
+
+Class basename:
+
+```php
+Relation::morphMap([
+    'CollectionItem' => 'App\CollectionItem',
+]);
+```
+
 #### Casing
 
-By default, the case type for aliasing models is set to *snake case*. You can change this to use camel, snake, or studly casing.
+Converts your model name (after having passed the naming scheme conversion) to a more uniform string. By default, the model's name (based on your naming scheme) is converted to *snake case*.
 
-See `\SebastiaanLuca\AutoMorphMap\CaseTypes` for possible options.
+You can change this to use snake, slug, camel, studly or no casing. See `\SebastiaanLuca\AutoMorphMap\Constants\CaseTypes` for possible options.
 
 Snake case (default):
 
 ```php
 Relation::morphMap([
-    'collection_items' => 'App\CollectionItems',
+    'collection_item' => 'App\CollectionItem',
+]);
+```
+
+Slug case:
+
+```php
+Relation::morphMap([
+    'collection-item' => 'App\CollectionItem',
 ]);
 ```
 
@@ -142,7 +181,7 @@ Camel case:
 
 ```php
 Relation::morphMap([
-    'collectionItems' => 'App\CollectionItems',
+    'collectionItem' => 'App\CollectionItem',
 ]);
 ```
 
@@ -150,11 +189,17 @@ Studly case:
 
 ```php
 Relation::morphMap([
-    'CollectionItems' => 'App\CollectionItems',
+    'CollectionItem' => 'App\CollectionItem',
 ]);
 ```
 
-The case type can still be changed after caching your models.
+None (determined by your naming scheme and Laravel's class-to-table conversion method):
+
+```php
+Relation::morphMap([
+    'collection_item' => 'App\CollectionItem',
+]);
+```
 
 ## License
 

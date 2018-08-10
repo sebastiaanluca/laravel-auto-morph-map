@@ -6,6 +6,20 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
+## 2.0.0 (2018-08-10)
+
+### Added
+
+- Added naming scheme options
+- Added conversion override option
+- Added "none" case type
+- Added slug case type
+
+### Changed
+
+- Moved `CaseTypes` to a sub namespace
+- Cache command now writes an aliased list of models, in effect disabling changing the case type afterwards
+
 ## 1.0.0 (2018-08-07)
 
 ### Added

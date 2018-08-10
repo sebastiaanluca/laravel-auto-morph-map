@@ -45,13 +45,14 @@ class CacheMorphMap extends Command
      */
     public function handle() : void
     {
-        $models = $this->mapper->getModels();
-
         $cache = $this->mapper->getCachePath();
+
+        $models = $this->mapper->getModels();
+        $map = $this->mapper->getModelMap($models);
 
         file_put_contents(
             $cache,
-            '<?php return ' . var_export($models, true) . ';'
+            '<?php return ' . var_export($map, true) . ';'
         );
 
         $this->info('Morph map models cached!');

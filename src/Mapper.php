@@ -7,6 +7,8 @@ namespace SebastiaanLuca\AutoMorphMap;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use ReflectionClass;
+use SebastiaanLuca\AutoMorphMap\Constants\CaseTypes;
+use SebastiaanLuca\AutoMorphMap\Constants\NamingSchemes;
 use Symfony\Component\Finder\Finder;
 
 class Mapper
@@ -24,7 +26,17 @@ class Mapper
 
         $models = $this->getModels();
 
-        $this->mapModels($models);
+        $map = $this->getModelMap($models);
+
+        $this->mapModels($map);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCachePath() : string
+    {
+        return base_path('bootstrap/cache/morphmap.php');
     }
 
     /**
@@ -33,6 +45,7 @@ class Mapper
     public function getModels() : array
     {
         $config = $this->getComposerConfig();
+
         $paths = $this->getModelPaths($config);
 
         if (empty($paths)) {
@@ -43,11 +56,19 @@ class Mapper
     }
 
     /**
-     * @return string
+     * @param array $models
+     *
+     * @return array
      */
-    public function getCachePath() : string
+    public function getModelMap(array $models) : array
     {
-        return base_path('bootstrap/cache/morphmap.php');
+        $map = [];
+
+        foreach ($models as $model) {
+            array_set($map, $this->getModelAlias($model), $model);
+        }
+
+        return $map;
     }
 
     /**
@@ -130,17 +151,11 @@ class Mapper
     }
 
     /**
-     * @param array $models
+     * @param array $map
      */
-    protected function mapModels(array $models) : void
+    protected function mapModels(array $map) : void
     {
-        $existing = Relation::morphMap();
-
-        $map = [];
-
-        foreach ($models as $model) {
-            array_set($map, $this->getModelAlias($model), $model);
-        }
+        $existing = Relation::morphMap() ?: [];
 
         if (! empty($existing)) {
             $map = collect($map)
@@ -160,18 +175,52 @@ class Mapper
      */
     protected function getModelAlias(string $model) : string
     {
-        $basename = class_basename($model);
+        $callback = config('auto-morph-map.conversion');
+
+        if ($callback && is_callable($callback)) {
+            return $callback($model);
+        }
+
+        $name = $this->getModelName($model);
 
         switch (config('auto-morph-map.case')) {
+            case CaseTypes::SNAKE_CASE:
+                return snake_case($name);
+
+            case CaseTypes::SLUG_CASE:
+                return str_slug($name);
+
             case CaseTypes::CAMEL_CASE:
-                return camel_case($basename);
+                return camel_case($name);
 
             case CaseTypes::STUDLY_CASE:
-                return studly_case($basename);
+                return studly_case($name);
 
-            case CaseTypes::SNAKE_CASE:
+            case CaseTypes::NONE:
             default:
-                return snake_case($basename);
+                return $name;
+        }
+    }
+
+    /**
+     * @param string $model
+     *
+     * @return string
+     */
+    private function getModelName(string $model) : string
+    {
+        switch (config('auto-morph-map.naming')) {
+            case NamingSchemes::TABLE_NAME:
+                return app($model)->getTable();
+
+            case NamingSchemes::CLASS_BASENAME:
+                return class_basename($model);
+
+            case NamingSchemes::SINGULAR_TABLE_NAME:
+            default:
+                return str_singular(
+                    app($model)->getTable()
+                );
         }
     }
 }

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thing extends Model
 {
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'SomeThings';
 }
