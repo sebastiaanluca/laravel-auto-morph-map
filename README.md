@@ -16,7 +16,7 @@
 
 See [Custom Polymorphic Types](https://laravel.com/docs/5.6/eloquent-relationships#polymorphic-relations) in the Laravel documentation for more information.
 
-*Laravel auto morph map* improves upon that by scanning all your Eloquent models, automatically aliasing them as *uniform singular table names*, and registering them as a polymorphic type. No more need for dozens of manual `Relation::morphMap()` calls to register model morph types!
+*Laravel auto morph map* improves upon that by scanning all your Eloquent models, automatically aliasing them as *uniform singular table names*, and registering them as a polymorphic type. No more need for dozens of manual `Relation::morphMap()` calls to register model morph types and no need to maintain that pesky morph map list when you add, change, or remove a model.
 
 ## Table of contents
 
