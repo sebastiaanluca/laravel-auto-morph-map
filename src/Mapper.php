@@ -6,6 +6,8 @@ namespace SebastiaanLuca\AutoMorphMap;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use ReflectionClass;
 use SebastiaanLuca\AutoMorphMap\Constants\CaseTypes;
 use SebastiaanLuca\AutoMorphMap\Constants\NamingSchemes;
@@ -65,7 +67,7 @@ class Mapper
         $map = [];
 
         foreach ($models as $model) {
-            array_set($map, $this->getModelAlias($model), $model);
+            Arr::set($map, $this->getModelAlias($model), $model);
         }
 
         return $map;
@@ -102,7 +104,7 @@ class Mapper
      */
     protected function getModelPaths(array $config) : array
     {
-        $paths = array_get($config, 'autoload.psr-4');
+        $paths = Arr::get($config, 'autoload.psr-4');
 
         $paths = collect($paths)
             ->unique()
@@ -130,7 +132,7 @@ class Mapper
                 $model = $namespace . str_replace(
                         ['/', '.php'],
                         ['\\', ''],
-                        str_after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
+                        Str::after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
                     );
 
                 if (! class_exists($model)) {
@@ -160,7 +162,7 @@ class Mapper
         if (! empty($existing)) {
             $map = collect($map)
                 ->reject(function (string $class, string $alias) use ($existing) {
-                    return array_key_exists($alias, $existing) || in_array($class, $existing);
+                    return array_key_exists($alias, $existing) || in_array($class, $existing, true);
                 })
                 ->toArray();
         }
@@ -185,16 +187,16 @@ class Mapper
 
         switch (config('auto-morph-map.case')) {
             case CaseTypes::SNAKE_CASE:
-                return snake_case($name);
+                return Str::snake($name);
 
             case CaseTypes::SLUG_CASE:
-                return str_slug($name);
+                return Str::slug($name);
 
             case CaseTypes::CAMEL_CASE:
-                return camel_case($name);
+                return Str::camel($name);
 
             case CaseTypes::STUDLY_CASE:
-                return studly_case($name);
+                return Str::studly($name);
 
             case CaseTypes::NONE:
             default:
@@ -218,7 +220,7 @@ class Mapper
 
             case NamingSchemes::SINGULAR_TABLE_NAME:
             default:
-                return str_singular(
+                return Str::singular(
                     app($model)->getTable()
                 );
         }
