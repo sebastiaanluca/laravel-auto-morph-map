@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SebastiaanLuca\AutoMorphMap\Tests\Feature;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Str;
 use Mockery\MockInterface;
 use SebastiaanLuca\AutoMorphMap\Constants\CaseTypes;
 use SebastiaanLuca\AutoMorphMap\Constants\NamingSchemes;
@@ -27,7 +28,7 @@ class AutobinderNameOverrideTest extends TestCase
         config()->set('auto-morph-map.case', CaseTypes::SLUG_CASE);
 
         config()->set('auto-morph-map.conversion', function (string $model) {
-            return 'prefixed_' . snake_case(class_basename($model));
+            return 'prefixed_' . Str::snake(class_basename($model));
         });
 
         $expected = [
