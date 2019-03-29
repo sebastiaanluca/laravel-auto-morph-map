@@ -135,7 +135,11 @@ class Mapper
                         Str::after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
                     );
 
-                if (! class_exists($model)) {
+                try {
+                    if (!class_exists($model)) {
+                        continue;
+                    }
+                } catch (\Exception $e) {
                     continue;
                 }
 
