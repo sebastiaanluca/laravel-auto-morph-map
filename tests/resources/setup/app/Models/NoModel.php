@@ -6,5 +6,4 @@ namespace App\Models;
 
 class NoModel
 {
-
 }

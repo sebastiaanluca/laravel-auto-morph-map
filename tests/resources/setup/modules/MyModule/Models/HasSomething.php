@@ -6,5 +6,4 @@ namespace MyModule\Models;
 
 trait HasSomething
 {
-
 }

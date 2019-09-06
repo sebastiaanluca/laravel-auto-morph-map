@@ -47,10 +47,9 @@ class Mapper
     public function getModels() : array
     {
         $config = $this->getComposerConfig();
-
         $paths = $this->getModelPaths($config);
 
-        if (empty($paths)) {
+        if (count($paths) === 0) {
             return [];
         }
 
@@ -82,7 +81,7 @@ class Mapper
             return false;
         }
 
-        $this->mapModels(require $cache);
+        $this->mapModels(include $cache);
 
         return true;
     }
@@ -129,11 +128,13 @@ class Mapper
 
         foreach ($paths as $namespace => $path) {
             foreach ((new Finder)->in($path)->files() as $file) {
-                $model = $namespace . str_replace(
-                        ['/', '.php'],
-                        ['\\', ''],
-                        Str::after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
-                    );
+                $name = str_replace(
+                    ['/', '.php'],
+                    ['\\', ''],
+                    Str::after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
+                );
+
+                $model = $namespace . $name;
 
                 if (! class_exists($model)) {
                     continue;
@@ -154,14 +155,16 @@ class Mapper
 
     /**
      * @param array $map
+     *
+     * @return void
      */
     protected function mapModels(array $map) : void
     {
         $existing = Relation::morphMap() ?: [];
 
-        if (! empty($existing)) {
+        if (count($existing) > 0) {
             $map = collect($map)
-                ->reject(function (string $class, string $alias) use ($existing) {
+                ->reject(function (string $class, string $alias) use ($existing) : bool {
                     return array_key_exists($alias, $existing) || in_array($class, $existing, true);
                 })
                 ->toArray();

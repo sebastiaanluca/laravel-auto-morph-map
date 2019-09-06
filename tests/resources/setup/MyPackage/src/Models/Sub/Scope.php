@@ -6,5 +6,4 @@ namespace MyPackage\Models\Sub;
 
 interface Scope
 {
-
 }
