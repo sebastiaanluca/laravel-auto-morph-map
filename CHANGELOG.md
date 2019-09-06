@@ -4,7 +4,11 @@ All Notable changes to `sebastiaanluca/laravel-auto-morph-map` will be documente
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## Unreleased
+## 4.0.0 (2019-09-06)
+
+### Added
+
+- Added support for Laravel 6.0
 
 ## 3.0.0 (2019-03-01)
 
