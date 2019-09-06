@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SebastiaanLuca\AutoMorphMap\Tests;
 
 use Illuminate\Filesystem\Filesystem;
