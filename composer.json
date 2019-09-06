@@ -27,7 +27,7 @@
     },
     "require-dev": {
         "kint-php/kint": "^3.0",
-        "mockery/mockery": "^1.2",
+        "mockery/mockery": "^1.2.2",
         "orchestra/testbench": "3.8.*|^4.0",
         "phpunit/phpunit": "^8.3",
         "sebastiaanluca/php-codesniffer-ruleset": "^0.4.2"
@@ -71,7 +71,8 @@
         "check": [
             "@composer-validate",
             "@codesniffer-check",
-            "@test"
+            "@test-lowest",
+            "@test-stable"
         ]
     },
     "minimum-stability": "dev",
