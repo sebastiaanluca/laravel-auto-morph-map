@@ -66,10 +66,10 @@ class TestCase extends BaseTestCase
 
     private function dumpautoload() : void
     {
-        $process = new Process(sprintf(
-            'cd %s && composer dumpautoload',
-            base_path()
-        ));
+        $process = new Process([
+            'cd ' . base_path(),
+            'composer dumpautoload',
+        ]);
 
         $process->run();
     }
