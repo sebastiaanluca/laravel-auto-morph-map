@@ -41,7 +41,7 @@ See [Custom Polymorphic Types](https://laravel.com/docs/5.6/eloquent-relationshi
 ## Requirements
 
 - PHP 7.3 or higher
-- Laravel 6.0 or higher
+- Laravel 7.0 or higher
 
 ## How to install
 
