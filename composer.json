@@ -29,7 +29,7 @@
         "kint-php/kint": "^3.3",
         "mockery/mockery": "^1.3",
         "orchestra/testbench": "^5.1|^6.0",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
         "psr-4": {
