@@ -4,6 +4,12 @@ All Notable changes to `sebastiaanluca/laravel-auto-morph-map` will be documente
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 7.0.1 (2021-06-22)
+
+### Fixed
+
+- Fixed the requirements in the readme
+
 ## 7.0.0 (2021-06-22)
 
 ### Added
