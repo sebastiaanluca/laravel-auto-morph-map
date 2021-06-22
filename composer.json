@@ -56,7 +56,9 @@
     },
     "scripts": {
         "composer-validate": "@composer validate --no-check-all --strict --ansi",
-        "test": "vendor/bin/phpunit",
+        "test": [
+            "@php ./vendor/bin/phpunit"
+        ],
         "test-lowest": [
             "composer update --prefer-lowest --prefer-dist --no-interaction --ansi",
             "@test"
