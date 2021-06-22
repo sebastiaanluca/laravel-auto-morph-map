@@ -18,7 +18,7 @@ class AutobinderNamingTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using the default naming scheme() : void
+    public function it maps all models using the default naming scheme(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -41,7 +41,7 @@ class AutobinderNamingTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using the singular table name naming scheme() : void
+    public function it maps all models using the singular table name naming scheme(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -64,7 +64,7 @@ class AutobinderNamingTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using the table name naming scheme() : void
+    public function it maps all models using the table name naming scheme(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -87,7 +87,7 @@ class AutobinderNamingTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using the class basename naming scheme() : void
+    public function it maps all models using the class basename naming scheme(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -107,11 +107,8 @@ class AutobinderNamingTest extends TestCase
         app(Mapper::class)->map();
     }
 
-    /**
-     * @return \Mockery\MockInterface
-     */
-    private function getMockedRelation() : MockInterface
+    private function getMockedRelation(): MockInterface
     {
-        return $this->mock('alias:' . Relation::class);
+        return $this->mock('alias:'.Relation::class);
     }
 }

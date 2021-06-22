@@ -16,11 +16,10 @@ use Symfony\Component\Finder\Finder;
 class Mapper
 {
     /**
-     * Scan all model directories and automatically alias the polymorphic types of Eloquent models.
-     *
-     * @return void
+     * Scan all model directories and automatically alias the polymorphic types
+     * of Eloquent models.
      */
-    public function map() : void
+    public function map(): void
     {
         if ($this->useCache()) {
             return;
@@ -33,18 +32,12 @@ class Mapper
         $this->mapModels($map);
     }
 
-    /**
-     * @return string
-     */
-    public function getCachePath() : string
+    public function getCachePath(): string
     {
         return base_path('bootstrap/cache/morphmap.php');
     }
 
-    /**
-     * @return array
-     */
-    public function getModels() : array
+    public function getModels(): array
     {
         $config = $this->getComposerConfig();
         $paths = $this->getModelPaths($config);
@@ -56,12 +49,7 @@ class Mapper
         return $this->scan($paths);
     }
 
-    /**
-     * @param array $models
-     *
-     * @return array
-     */
-    public function getModelMap(array $models) : array
+    public function getModelMap(array $models): array
     {
         $map = [];
 
@@ -72,10 +60,7 @@ class Mapper
         return $map;
     }
 
-    /**
-     * @return bool
-     */
-    protected function useCache() : bool
+    protected function useCache(): bool
     {
         if (! file_exists($cache = $this->getCachePath())) {
             return false;
@@ -86,22 +71,14 @@ class Mapper
         return true;
     }
 
-    /**
-     * @return array
-     */
-    protected function getComposerConfig() : array
+    protected function getComposerConfig(): array
     {
         $composer = file_get_contents(base_path('composer.json'));
 
         return json_decode($composer, true, JSON_UNESCAPED_SLASHES);
     }
 
-    /**
-     * @param array $config
-     *
-     * @return array
-     */
-    protected function getModelPaths(array $config) : array
+    protected function getModelPaths(array $config): array
     {
         $paths = Arr::get($config, 'autoload.psr-4');
 
@@ -117,12 +94,7 @@ class Mapper
         return $paths->toArray();
     }
 
-    /**
-     * @param array $paths
-     *
-     * @return array
-     */
-    protected function scan(array $paths) : array
+    protected function scan(array $paths): array
     {
         $models = [];
 
@@ -131,10 +103,10 @@ class Mapper
                 $name = str_replace(
                     ['/', '.php'],
                     ['\\', ''],
-                    Str::after($file->getPathname(), $path . DIRECTORY_SEPARATOR)
+                    Str::after($file->getPathname(), $path.DIRECTORY_SEPARATOR)
                 );
 
-                $model = $namespace . $name;
+                $model = $namespace.$name;
 
                 if (! class_exists($model)) {
                     continue;
@@ -153,18 +125,13 @@ class Mapper
         return $models;
     }
 
-    /**
-     * @param array $map
-     *
-     * @return void
-     */
-    protected function mapModels(array $map) : void
+    protected function mapModels(array $map): void
     {
         $existing = Relation::morphMap() ?: [];
 
         if (count($existing) > 0) {
             $map = collect($map)
-                ->reject(function (string $class, string $alias) use ($existing) : bool {
+                ->reject(function (string $class, string $alias) use ($existing): bool {
                     return array_key_exists($alias, $existing) || in_array($class, $existing, true);
                 })
                 ->toArray();
@@ -173,12 +140,7 @@ class Mapper
         Relation::morphMap($map);
     }
 
-    /**
-     * @param string $model
-     *
-     * @return string
-     */
-    protected function getModelAlias(string $model) : string
+    protected function getModelAlias(string $model): string
     {
         $callback = config('auto-morph-map.conversion');
 
@@ -207,12 +169,7 @@ class Mapper
         }
     }
 
-    /**
-     * @param string $model
-     *
-     * @return string
-     */
-    private function getModelName(string $model) : string
+    private function getModelName(string $model): string
     {
         switch (config('auto-morph-map.naming')) {
             case NamingSchemes::TABLE_NAME:

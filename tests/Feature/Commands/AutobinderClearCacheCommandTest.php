@@ -13,7 +13,7 @@ class AutobinderClearCacheCommandTest extends TestCase
     /**
      * @test
      */
-    public function it clears the cache() : void
+    public function it clears the cache(): void
     {
         app(Kernel::class)->registerCommand(app(ClearCachedMorphMap::class));
 

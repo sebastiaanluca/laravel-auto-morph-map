@@ -18,7 +18,7 @@ class AutobinderCaseTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using the default case() : void
+    public function it maps all models using the default case(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -41,7 +41,7 @@ class AutobinderCaseTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using snake case() : void
+    public function it maps all models using snake case(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -64,7 +64,7 @@ class AutobinderCaseTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using slug case() : void
+    public function it maps all models using slug case(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -87,7 +87,7 @@ class AutobinderCaseTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using camel case() : void
+    public function it maps all models using camel case(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -110,7 +110,7 @@ class AutobinderCaseTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using studly case() : void
+    public function it maps all models using studly case(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -130,11 +130,8 @@ class AutobinderCaseTest extends TestCase
         app(Mapper::class)->map();
     }
 
-    /**
-     * @return \Mockery\MockInterface
-     */
-    private function getMockedRelation() : MockInterface
+    private function getMockedRelation(): MockInterface
     {
-        return $this->mock('alias:' . Relation::class);
+        return $this->mock('alias:'.Relation::class);
     }
 }

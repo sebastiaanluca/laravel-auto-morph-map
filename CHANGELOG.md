@@ -12,6 +12,10 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Added proper GitHub templates
 - Added GitHub Actions testing
 
+### Changed
+
+- Cleaned up all code and redundant comments
+
 ### Removed
 
 - Dropped support for PHP 7

@@ -23,16 +23,8 @@ class ClearCachedMorphMap extends Command
      */
     protected $description = 'Remove the morph map cache file';
 
-    /**
-     * @var \SebastiaanLuca\AutoMorphMap\Mapper
-     */
-    private $mapper;
+    private Mapper $mapper;
 
-    /**
-     * Create a new command instance.
-     *
-     * @param \SebastiaanLuca\AutoMorphMap\Mapper $mapper
-     */
     public function __construct(Mapper $mapper)
     {
         parent::__construct();
@@ -40,12 +32,7 @@ class ClearCachedMorphMap extends Command
         $this->mapper = $mapper;
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function handle() : void
+    public function handle(): void
     {
         @unlink($this->mapper->getCachePath());
 

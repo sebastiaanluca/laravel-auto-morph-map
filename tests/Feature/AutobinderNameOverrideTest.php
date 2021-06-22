@@ -20,7 +20,7 @@ class AutobinderNameOverrideTest extends TestCase
     /**
      * @test
      */
-    public function it maps all models using the user defined method() : void
+    public function it maps all models using the user defined method(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -28,7 +28,7 @@ class AutobinderNameOverrideTest extends TestCase
         config()->set('auto-morph-map.case', CaseTypes::SLUG_CASE);
 
         config()->set('auto-morph-map.conversion', function (string $model) {
-            return 'prefixed_' . Str::snake(class_basename($model));
+            return 'prefixed_'.Str::snake(class_basename($model));
         });
 
         $expected = [
@@ -45,11 +45,8 @@ class AutobinderNameOverrideTest extends TestCase
         app(Mapper::class)->map();
     }
 
-    /**
-     * @return \Mockery\MockInterface
-     */
-    private function getMockedRelation() : MockInterface
+    private function getMockedRelation(): MockInterface
     {
-        return $this->mock('alias:' . Relation::class);
+        return $this->mock('alias:'.Relation::class);
     }
 }
