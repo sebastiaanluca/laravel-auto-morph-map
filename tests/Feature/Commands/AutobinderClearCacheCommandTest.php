@@ -13,7 +13,7 @@ class AutobinderClearCacheCommandTest extends TestCase
     /**
      * @test
      */
-    public function it clears the cache() : void
+    public function it clears the cache(): void
     {
         app(Kernel::class)->registerCommand(app(ClearCachedMorphMap::class));
 
@@ -23,6 +23,6 @@ class AutobinderClearCacheCommandTest extends TestCase
 
         $this->artisan('morphmap:clear');
 
-        $this->assertFileNotExists($cache);
+        $this->assertFileDoesNotExist($cache);
     }
 }

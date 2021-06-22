@@ -4,6 +4,24 @@ All Notable changes to `sebastiaanluca/laravel-auto-morph-map` will be documente
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 7.0.0 (2021-06-22)
+
+### Added
+
+- Added support for PHP 8
+- Added proper GitHub templates
+- Added GitHub Actions testing
+
+### Changed
+
+- Cleaned up all code and redundant comments
+
+### Removed
+
+- Dropped support for PHP 7
+- Dropped support for Laravel 7
+- Dropped TravisCI testing
+
 ## 6.0.0 (2020-10-19)
 
 ### Added

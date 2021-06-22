@@ -13,13 +13,13 @@ class AutobinderCacheCommandTest extends TestCase
     /**
      * @test
      */
-    public function it caches all models() : void
+    public function it caches all models(): void
     {
         app(Kernel::class)->registerCommand(app(CacheMorphMap::class));
 
         $cache = base_path('bootstrap/cache/morphmap.php');
 
-        $this->assertFileNotExists($cache);
+        $this->assertFileDoesNotExist($cache);
 
         $this->artisan('morphmap:cache');
 

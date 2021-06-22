@@ -2,7 +2,7 @@
 
 [![Latest stable release][version-badge]][link-packagist]
 [![Software license][license-badge]](LICENSE.md)
-[![Build status][travis-badge]][link-travis]
+[![Build status][githubaction-badge]][link-githubaction]
 [![Total downloads][downloads-badge]][link-packagist]
 [![Total stars][stars-badge]][link-github]
 
@@ -238,7 +238,7 @@ Have a project that could use some guidance? Send me an e-mail at [hello@sebasti
 
 [version-badge]: https://img.shields.io/packagist/v/sebastiaanluca/laravel-auto-morph-map.svg?label=stable
 [license-badge]: https://img.shields.io/badge/license-MIT-informational.svg
-[travis-badge]: https://img.shields.io/travis/sebastiaanluca/laravel-auto-morph-map/master.svg
+[githubaction-badge]: https://github.com/sebastiaanluca/laravel-auto-morph-map/actions/workflows/test.yml/badge.svg?branch=master
 [downloads-badge]: https://img.shields.io/packagist/dt/sebastiaanluca/laravel-auto-morph-map.svg?color=brightgreen
 [stars-badge]: https://img.shields.io/github/stars/sebastiaanluca/laravel-auto-morph-map.svg?color=brightgreen
 
@@ -249,12 +249,12 @@ Have a project that could use some guidance? Send me an e-mail at [hello@sebasti
 
 [link-github]: https://github.com/sebastiaanluca/laravel-auto-morph-map
 [link-packagist]: https://packagist.org/packages/sebastiaanluca/laravel-auto-morph-map
-[link-travis]: https://travis-ci.org/sebastiaanluca/laravel-auto-morph-map
+[link-githubaction]: https://github.com/sebastiaanluca/laravel-auto-morph-map/actions/workflows/test.yml?query=branch%3Amaster
 [link-twitter-share]: https://twitter.com/intent/tweet?text=Automatically%20alias%20and%20map%20the%20polymorphic%20types%20of%20Eloquent%20models.%20Via%20@sebastiaanluca%20https://github.com/sebastiaanluca/laravel-auto-morph-map
 [link-contributors]: ../../contributors
 
-[link-portfolio]: https://www.sebastiaanluca.com
-[link-blog]: https://blog.sebastiaanluca.com
+[link-portfolio]: https://sebastiaanluca.com
+[link-blog]: https://sebastiaanluca.com/blog
 [link-packages]: https://packagist.org/packages/sebastiaanluca
 [link-twitter]: https://twitter.com/sebastiaanluca
 [link-github-profile]: https://github.com/sebastiaanluca

@@ -23,16 +23,8 @@ class CacheMorphMap extends Command
      */
     protected $description = 'Create a cache file for faster morph mapping';
 
-    /**
-     * @var \SebastiaanLuca\AutoMorphMap\Mapper
-     */
-    private $mapper;
+    private Mapper $mapper;
 
-    /**
-     * Create a new command instance.
-     *
-     * @param \SebastiaanLuca\AutoMorphMap\Mapper $mapper
-     */
     public function __construct(Mapper $mapper)
     {
         parent::__construct();
@@ -40,12 +32,7 @@ class CacheMorphMap extends Command
         $this->mapper = $mapper;
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function handle() : void
+    public function handle(): void
     {
         $cache = $this->mapper->getCachePath();
 
@@ -54,7 +41,7 @@ class CacheMorphMap extends Command
 
         file_put_contents(
             $cache,
-            '<?php return ' . var_export($map, true) . ';'
+            '<?php return '.var_export($map, true).';'
         );
 
         $this->info('Morph map models cached!');

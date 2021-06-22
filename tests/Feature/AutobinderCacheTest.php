@@ -17,7 +17,7 @@ class AutobinderCacheTest extends TestCase
     /**
      * @test
      */
-    public function it doesnt read from cache when not cached() : void
+    public function it doesnt read from cache when not cached(): void
     {
         $relation = $this->getMockedRelation();
 
@@ -38,12 +38,12 @@ class AutobinderCacheTest extends TestCase
     /**
      * @test
      */
-    public function it reads from cache when cached() : void
+    public function it reads from cache when cached(): void
     {
         $cache = base_path('bootstrap/cache/morphmap.php');
 
         $copy = copy(
-            __DIR__ . '/../resources/cache.php',
+            __DIR__.'/../resources/cache.php',
             $cache
         );
 
@@ -64,11 +64,8 @@ class AutobinderCacheTest extends TestCase
         unlink($cache);
     }
 
-    /**
-     * @return \Mockery\MockInterface
-     */
-    private function getMockedRelation() : MockInterface
+    private function getMockedRelation(): MockInterface
     {
-        return $this->mock('alias:' . Relation::class);
+        return $this->mock('alias:'.Relation::class);
     }
 }
