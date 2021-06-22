@@ -19,7 +19,7 @@ class AutobinderCacheCommandTest extends TestCase
 
         $cache = base_path('bootstrap/cache/morphmap.php');
 
-        $this->assertFileDoesNotExist($cache);
+        $this->assertFileNotExists($cache);
 
         $this->artisan('morphmap:cache');
 

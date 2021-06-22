@@ -23,6 +23,6 @@ class AutobinderClearCacheCommandTest extends TestCase
 
         $this->artisan('morphmap:clear');
 
-        $this->assertFileDoesNotExist($cache);
+        $this->assertFileNotExists($cache);
     }
 }
